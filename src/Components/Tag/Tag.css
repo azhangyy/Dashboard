@@ -1,0 +1,16 @@
+.tag {
+  padding: 5px;
+  font-size: 12px;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  margin: 10px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+}

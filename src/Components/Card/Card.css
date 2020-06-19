@@ -1,0 +1,25 @@
+.card {
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid #bbb;
+  background-color: #eee;
+  width: 100px;
+  font-size: 12px;
+}
+.grid {
+  display: flex;
+}
+
+.grid > div {
+  background-color: #f1f1f1;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+.image {
+  height: 20px;
+  width: 20px;
+}
