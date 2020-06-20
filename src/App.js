@@ -4,7 +4,7 @@ import Header from "./Components/Header";
 import Search from "./Components/Search/Search.js";
 import TagList from "./Components/TagList/TagList.js";
 import CardList from "./Components/CardList/CardList.js";
-//import Tag from "./Components/Tag/Tag.js";
+import Tag from "./Components/Tag/Tag.js";
 import courses from "./Components/Courses.js";
 
 const topics = [courses][0];
@@ -12,6 +12,7 @@ console.log(topics[0]["tags"]);
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeTag, setActiveTag] = useState("");
 
   /*get unique courses and their counts*/
   function handleUnique(result) {
@@ -43,13 +44,12 @@ function App() {
     return key[0].includes(searchTerm.toLowerCase());
   });
 
-  /*filter the cards*/
-
   return (
     <div>
       <Header />
       <Search handleInput={handleInput} />
       <TagList filterTopic={filterTopic} />
+      <Tag activeTag={activeTag} setActiveTag={setActiveTag} />
       <CardList topics={topics} />
     </div>
   );
