@@ -1,6 +1,9 @@
 .tag {
   padding: 5px;
   font-size: 12px;
+  border: solid;
+  border-width: thin;
+  background-color: #ffffff;
 }
 .flex-container {
   display: flex;

@@ -13,11 +13,9 @@ function Tag(unique, props) {
 
   return (
     <div onClick={handleClick} className="tag">
-      <button>
-        {unique.tags}
-        <span> | </span>
-        {unique.count}
-      </button>
+      {unique.tags}
+      <span> | </span>
+      {unique.count}
     </div>
   );
 }

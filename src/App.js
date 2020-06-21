@@ -4,7 +4,6 @@ import Header from "./Components/Header";
 import Search from "./Components/Search/Search.js";
 import TagList from "./Components/TagList/TagList.js";
 import CardList from "./Components/CardList/CardList.js";
-import Tag from "./Components/Tag/Tag.js";
 import courses from "./Components/Courses.js";
 
 const topics = [courses][0];
@@ -47,10 +46,15 @@ function App() {
   return (
     <div>
       <Header />
-      <Search handleInput={handleInput} />
-      <TagList filterTopic={filterTopic} />
-      <Tag activeTag={activeTag} setActiveTag={setActiveTag} />
-      <CardList topics={topics} />
+      <div className="flex-container">
+        <Search handleInput={handleInput} />
+        <TagList
+          filterTopic={filterTopic}
+          activeTag={activeTag}
+          setActiveTag={setActiveTag}
+        />
+      </div>
+      <CardList topics={topics} activeTag={activeTag} />
     </div>
   );
 }
