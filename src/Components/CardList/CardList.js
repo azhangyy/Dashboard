@@ -1,14 +1,19 @@
 import React from "react";
-import Card from "/Users/angela/Documents/GitHub/Dashboard/src/Components/Card/Card.js";
+import Card from "../Card/Card.js";
 
 function CardList(props) {
-  console.log(props.topics);
+  /*filter cards here? if topics.tags includes activeTag and then map those?*/
 
-  /*filter cards here? if topics.tags includes activeTag*/
+  const filterCourses = props.topics.filter((course) => {
+    console.log("yes", course.tags.includes(props.activeTag));
+    return course.tags.includes(props.activeTag);
+  });
+
+  console.log("course filter", filterCourses);
 
   return (
     <div className="grid">
-      {props.topics.map((course, idx) => (
+      {filterCourses.map((course, idx) => (
         <Card
           key={idx}
           title={course.title}

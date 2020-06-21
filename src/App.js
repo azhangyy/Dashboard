@@ -7,7 +7,6 @@ import CardList from "./Components/CardList/CardList.js";
 import courses from "./Components/Courses.js";
 
 const topics = [courses][0];
-console.log(topics[0]["tags"]);
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,7 +33,6 @@ function App() {
   const unique = handleUnique(topics);
 
   function handleInput(e) {
-    /*console.log(e.target.value);*/
     setSearchTerm(e.target.value);
   }
 

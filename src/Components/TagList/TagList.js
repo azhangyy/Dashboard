@@ -1,5 +1,5 @@
 import React from "react";
-import Tag from "/Users/angela/Documents/GitHub/Dashboard/src/Components/Tag/Tag.js";
+import Tag from "../Tag/Tag.js";
 
 function TagList(props) {
   return (

@@ -1,21 +1,22 @@
 import React from "react";
 import "./Tag.css";
 
-function Tag(unique, props) {
+function Tag(props) {
   function handleClick() {
-    //handle double click and single click
-    if (props.activeTag === unique.tags) {
+    //handle double click
+    if (props.activeTag === props.tags) {
       props.setActiveTag("");
     } else {
-      props.setActiveTag(unique.tags);
+      //handle single click
+      props.setActiveTag(props.tags);
     }
   }
 
   return (
     <div onClick={handleClick} className="tag">
-      {unique.tags}
+      {props.tags}
       <span> | </span>
-      {unique.count}
+      {props.count}
     </div>
   );
 }
