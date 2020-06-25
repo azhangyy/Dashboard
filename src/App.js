@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import Search from "./Components/Search/Search.js";
@@ -8,9 +8,10 @@ import courses from "./Components/Courses.js";
 
 const topics = [courses][0];
 
-function App() {
+function App(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTag, setActiveTag] = useState("");
+  const [authors, setAuthors] = useState({});
 
   /*get unique courses and their counts*/
   function handleUnique(result) {
@@ -41,10 +42,21 @@ function App() {
     return key[0].includes(searchTerm.toLowerCase());
   });
 
+  useEffect(() => {
+    getAuthorData();
+  }, []);
+
+  async function getAuthorData() {
+    fetch(
+      "https://s3.us-east-2.amazonaws.com/codecademy-interview/entities.json"
+    )
+      .then((resp) => resp.json())
+      .then((json) => setAuthors(json));
+  }
   return (
     <div>
       <Header />
-      <div className="flex-container">
+      <div className="tag-container black-border">
         <Search handleInput={handleInput} />
         <TagList
           filterTopic={filterTopic}
@@ -52,7 +64,7 @@ function App() {
           setActiveTag={setActiveTag}
         />
       </div>
-      <CardList topics={topics} activeTag={activeTag} />
+      <CardList topics={topics} activeTag={activeTag} authors={authors} />
     </div>
   );
 }

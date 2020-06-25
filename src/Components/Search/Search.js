@@ -1,12 +1,14 @@
 import React from "react";
-import "./Search.css";
+//import "./Search.css";
+import "../Tag/Tag.css";
 
 function Search(props) {
   return (
-    <div className="search">
+    <div>
       <input
+        className="search"
         type="text"
-        placeholder="Tag Name..."
+        placeholder="Search Tag Name..."
         onChange={props.handleInput}
       />
     </div>

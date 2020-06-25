@@ -5,15 +5,26 @@
   border-width: thin;
   background-color: #ffffff;
 }
-.flex-container {
+
+/*styles the container itself*/
+.tag-container {
   display: flex;
-  flex-direction: row;
-  background-color: DodgerBlue;
+  background-color: #90a4ae;
+}
+.black-border {
+  border-bottom: 1px solid black;
 }
 
-.flex-container > div {
+/*styles within the container*/
+.tag-container > div {
   margin: 10px;
-  text-align: center;
   line-height: 20px;
   font-size: 12px;
+  flex-direction: row;
+}
+
+.search {
+  width: 160px;
+  padding: 7px;
+  margin: 10px;
 }

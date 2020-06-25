@@ -3,7 +3,7 @@ import Tag from "../Tag/Tag.js";
 
 function TagList(props) {
   return (
-    <div className="flex-container">
+    <div className="tag-container">
       {props.filterTopic.map(([key, value], idx) => (
         <Tag
           key={idx}
