@@ -8,4 +8,8 @@ mongoose.connect(mongoURI, {
 });
 mongoose.connection.on("connected", function () {
   console.log("Mongoose connected");
+  mongoose.connection.db.listCollections().toArray(function (err, names) {
+    console.log(names); // [{ name: 'dbname.myCollection' }]
+    module.exports.Collection = names;
+  });
 });

@@ -2,7 +2,6 @@ import React from "react";
 import "./Card.css";
 
 function Card(props) {
-  console.log(props.authors);
   return (
     //this CSS designs the individual card
     <div className="card">

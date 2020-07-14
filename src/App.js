@@ -4,14 +4,52 @@ import Header from "./Components/Header";
 import Search from "./Components/Search/Search.js";
 import TagList from "./Components/TagList/TagList.js";
 import CardList from "./Components/CardList/CardList.js";
-import courses from "./Components/Courses.js";
+//import courses from "./Components/Courses.js";
 
-const topics = [courses][0];
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-boost";
+import { gql } from "apollo-boost";
 
-function App(props) {
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+});
+
+const get_courses = gql`
+  {
+    courses {
+      id
+      slug
+      title
+      image
+      description
+      author_id
+      tags
+      pro
+    }
+  }
+`;
+
+//const topics = [courses][0];
+
+function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTag, setActiveTag] = useState("");
   const [authors, setAuthors] = useState({});
+  const [topics, setTopics] = useState([]);
+
+  /*use useEffect because you only want to retrieve the data once from API */
+  useEffect(() => {
+    client
+      .query({
+        query: get_courses,
+      })
+      .then(function (result) {
+        const course_data = result.data.courses;
+        setTopics(course_data);
+      });
+  }, []);
+
+  //console.log(topics);
 
   /*get unique courses and their counts*/
   function handleUnique(result) {
@@ -54,18 +92,20 @@ function App(props) {
       .then((json) => setAuthors(json));
   }
   return (
-    <div>
-      <Header />
-      <div className="tag-container black-border">
-        <Search handleInput={handleInput} />
-        <TagList
-          filterTopic={filterTopic}
-          activeTag={activeTag}
-          setActiveTag={setActiveTag}
-        />
+    <ApolloProvider client={client}>
+      <div>
+        <Header />
+        <div className="tag-container black-border">
+          <Search handleInput={handleInput} />
+          <TagList
+            filterTopic={filterTopic}
+            activeTag={activeTag}
+            setActiveTag={setActiveTag}
+          />
+        </div>
+        <CardList topics={topics} activeTag={activeTag} authors={authors} />
       </div>
-      <CardList topics={topics} activeTag={activeTag} authors={authors} />
-    </div>
+    </ApolloProvider>
   );
 }
 
